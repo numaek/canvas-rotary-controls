@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+ <body style="background-color: #EFEFEF;">
+
+ <span style="font-weight: bold; text-decoration: underline;">numaek Drehregler 1.1 - Beispiele</span><br>
+ Hinweis: <span style="font-style: italic;">Aktiviere bitte die Entwickler-Konsole mit F12. Dort werden die Meldungen und Werte ausgegeben.</span><br><br><br>
+
+ <table border="0">
+	<tr>
+		<td style="text-align: center;"><canvas id="nDr1" width="120" height="120" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Standardregler<br>
+			- Negative Skala<br>
+			- Ohne Skalenstriche<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nDr2" width="120" height="120" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- 0-Stellung in der Mitte<br>
+			- Skala mit Mittelstellung<br>
+			- Up-Down Steuerung<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nDr3" width="120" height="120" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Nur Leuchtring-Anzeige<br>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr1_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr1_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr2_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr2_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr3_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr3_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(1);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(1);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(2);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(2);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(3);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(3);">
+		</td>
+	</tr>
+
+	<tr><td colspan="10">&nbsp;<br><br></td></tr>
+
+	<tr>
+		<td style="text-align: center;"><canvas id="nDr4" width="120" height="120" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Stufenregler<br>
+			- Mit Knebel<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nDr5" width="120" height="120" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Stufenregler<br>
+			- Nur Knebel<br>
+			- Andere Endwinkel<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nDr6" width="120" height="120" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Endlosregler<br>
+			- Gibt Up-Down Impulse aus<br>
+			- Leuchtring voller Umfang<br>
+			- Leuchtring immer an<br>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr4_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr4_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr5_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr5_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr6_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr6_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(4);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(4);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(5);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(5);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(6);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(6);">
+		</td>
+	</tr>
+ </table>
+
+ <br><br>
+
+ <table border="0">
+	<tr>
+		<td style="text-align: center;"><canvas id="nDr7" width="220" height="220" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 260px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Standard-Beschriftung<br>
+			- Skala dicker werdend<br>
+			- Skala in Regenbogen<br>
+			- Knopf in Metalloptik<br>
+			- Wert exponentiell progressiv<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nDr8" width="220" height="220" style="border: 0px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 269px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- 3-Punkt Skala<br>
+			- Wert exponentiell degressiv<br>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr7_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr7_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nDr8_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nDr8_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(7);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(7);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(8);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(8);">
+		</td>
+	</tr>
+ </table>
+ <br><br>
+
+
+ <script type="text/javascript" src="nDrehregler.js"></script>
+
+ <script language="javascript">
+
+	var Regler = [];
+
+	function start()
+	{
+		// Regler konfigurieren und laden
+		// ==============================
+
+		Regler['nDr1'] = new Drehregler('nDr1');
+		Regler['nDr1'].configSet('skala',          3);
+		Regler['nDr1'].init();
+
+		Regler['nDr2'] = new Drehregler('nDr2');
+		Regler['nDr2'].configSet('skala',          2);
+		Regler['nDr2'].configSet('skala_striche',  1);
+		Regler['nDr2'].configSet('steuerung',      1);
+		Regler['nDr2'].configSet('start',          50);
+		Regler['nDr2'].configSet('mitte',          1);
+		Regler['nDr2'].init();
+
+		Regler['nDr3'] = new Drehregler('nDr3');
+		Regler['nDr3'].configSet('radius',         25);
+		Regler['nDr3'].configSet('start',          75);
+		Regler['nDr3'].configSet('ring_farbe',    '#00FFFF');
+		Regler['nDr3'].configSet('ring_hinter_f', '#006666');
+		Regler['nDr3'].configSet('skala',          0);
+		Regler['nDr3'].configSet('punkt',          0);
+		Regler['nDr3'].configSet('knopf_optik',    0);
+		Regler['nDr3'].init();
+
+		Regler['nDr4'] = new Drehregler('nDr4');
+		Regler['nDr4'].configSet('ring_farbe',    'red');
+		Regler['nDr4'].configSet('knebel',         1);
+		Regler['nDr4'].configSet('stufen',        '0|Off');
+		Regler['nDr4'].configSet('stufen',        '20|Low');
+		Regler['nDr4'].configSet('stufen',        '50|Mid');
+		Regler['nDr4'].configSet('stufen',        '70|High');
+		Regler['nDr4'].configSet('stufen',        '100|Over');
+		Regler['nDr4'].init();
+
+		Regler['nDr5'] = new Drehregler('nDr5');
+		Regler['nDr5'].configSet('ring_farbe',    '#00FF00');
+		Regler['nDr5'].configSet('start',          70);
+		Regler['nDr5'].configSet('min',            70);
+		Regler['nDr5'].configSet('max',            200);
+		Regler['nDr5'].configSet('knebel',         1);
+		Regler['nDr5'].configSet('knopf_optik',    0);
+		Regler['nDr5'].configSet('ring',           0);
+		Regler['nDr5'].configSet('stufen',        '0|Off');
+		Regler['nDr5'].configSet('stufen',        '20|Low');
+		Regler['nDr5'].configSet('stufen',        '50|Mid');
+		Regler['nDr5'].configSet('stufen',        '70|High');
+		Regler['nDr5'].configSet('stufen',        '100|Over');
+		Regler['nDr5'].init();
+
+		Regler['nDr6'] = new Drehregler('nDr6');
+		Regler['nDr6'].configSet('impuls',        1);
+		Regler['nDr6'].configSet('radius',        30);
+		Regler['nDr6'].configSet('ring',          3);
+		Regler['nDr6'].configSet('ring_farbe',   '#00FFFF');
+		Regler['nDr6'].init();
+
+		Regler['nDr7'] = new Drehregler('nDr7');
+		Regler['nDr7'].configSet('radius',        60);
+		Regler['nDr7'].configSet('punkt',        'punkt');
+		Regler['nDr7'].configSet('start',         75);
+		Regler['nDr7'].configSet('skala',         1);
+		Regler['nDr7'].configSet('skala_striche', 1);
+		Regler['nDr7'].configSet('knopf_optik',   2);
+		Regler['nDr7'].configSet('ring_farbe',   '#00FFFF');
+		Regler['nDr7'].configSet('ring_farbe',   'rainbow');
+		Regler['nDr7'].configSet('ring_breite',   -10);
+		Regler['nDr7'].configSet('wert_verlauf',  1);
+		Regler['nDr7'].init();
+
+		Regler['nDr8'] = new Drehregler('nDr8');
+		Regler['nDr8'].configSet('radius',        60);
+		Regler['nDr8'].configSet('punkt',        'punkt');
+		Regler['nDr8'].configSet('punkt_farbe',  '#EFEFEF');
+		Regler['nDr8'].configSet('skala_alle',    2);
+		Regler['nDr8'].configSet('ring_hinter',   2);
+		Regler['nDr8'].configSet('wert_verlauf',  -1);
+		Regler['nDr8'].init();
+
+		// console.log( Regler );
+	}
+
+	function Drehregler_Function(data)
+	{
+		// Funkton wird nach "set()" zur weiteren Verwarbeitung aufgerufen
+		// ===============================================================
+
+		// console.log( 'Regler "'+data.ID+'" mit ' + data.prozente + '%.' );
+
+		// Wertefelder beschreiben
+		feldStellung = data.ID + '_Stellung';
+		feldProzente = data.ID + '_Prozente';
+
+		document.getElementById(feldStellung).value = data.stellung + '%';
+		document.getElementById(feldProzente).value = data.prozente + '%';
+
+		if( data.ID == 'nDr6' )
+		{
+			// Impulsauswertung von Endlosregler
+			// =================================
+			if( data.impuls_wert ==  1 )
+			{
+				console.log( 'Endlosregler: UP' );
+			} else
+			if( data.impuls_wert == -1 )
+			{
+				console.log( 'Endlosregler: DOWN' );
+			}
+		}
+	}
+
+	function Regler_reset(nr)
+	{
+		indexName = 'nDr' + nr;
+		Regler[indexName].reset();
+	}
+
+	var logConsole = 0;
+	function Regler_log(nr)
+	{
+		if( logConsole == 0 )
+		{
+			alert('Aktiviere bitte die Entwickler-Konsole mit F12.\nDort werden die Meldungen und Werte ausgegeben.');
+			logConsole = 1;
+		}
+
+		indexName = 'nDr' + nr;
+		Regler[indexName].log();
+	}
+
+	document.onload = start();
+
+ </script>
+
+
+ </body>
+</html>
